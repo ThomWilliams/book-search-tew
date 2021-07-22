@@ -26,8 +26,8 @@ const LoginForm = () => {
     }
 
     try {
-      // Added by Thom for Apollo Server
-      const [userFormData, { error }] = useMutation(CREATE_VOTE);
+      // Added by Thom for Apollo 
+      const [userFormData, { error }] = useMutation(LOGIN_USER);
       // const response = await loginUser(userFormData);
      
       if (!response.ok) {
