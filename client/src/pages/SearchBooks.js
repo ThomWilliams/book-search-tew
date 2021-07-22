@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+
+import { SAVE_BOOK } from '../utils/queries';
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -65,8 +67,9 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await saveBook(bookToSave, token);
-
+      // Book To Save for Apollo added by Thom
+      const [bookToSave, { error }] = useMutation(SAVE_BOOK);
+    
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
