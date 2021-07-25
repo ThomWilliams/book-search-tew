@@ -44,15 +44,15 @@ const resolvers = {
 
     // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
     // {body} is destructured req.body
-    login: async ({ body }, res) => {
+    login: async ({ email, username , password}, res) => {
       const user = await User.findOne({
-        $or: [{ username: body.username }, { email: body.email }],
+        email
       });
       if (!user) {
         return res.status(400).json({ message: "Can't find this user" });
       }
 
-      const correctPw = await user.isCorrectPassword(body.password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         return res.status(400).json({ message: "Wrong password!" });
@@ -78,18 +78,14 @@ const resolvers = {
       }
     },
     // remove a book from `savedBooks`
-    deleteBook: async ({ user, params }, res) => {
+    deleteBook: async ({ bookData }, user) => {
       const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $pull: { savedBooks: { bookId: params.bookId } } },
+        { _id: user.user._id },
+        { $pull: { savedBooks: { bookData } } },
         { new: true }
       );
-      if (!updatedUser) {
-        return res
-          .status(404)
-          .json({ message: "Couldn't find user with this id!" });
-      }
-      return res.json(updatedUser);
+     
+      return updatedUser; 
     },
   },
 };
