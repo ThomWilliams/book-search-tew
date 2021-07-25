@@ -16,13 +16,11 @@
 
 A book search engine which, uses a fully functioning Google Books API search engine. 
 
-The app allows users to search for book titles and save those books to the back end. 
-
-An original APP built with a RESTful API has been refactored with an Apollo Server for use with a GraphQL API. 
+The app allows users to search for book titles and save those books to the back end, with an Apollo Server for use with a GraphQL API. 
 
 The app is built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. 
 
-As part of the assignment an Apollo Server has been installed to run GraphQL queries, with mutations used to fetch and modify data.Apollo Provider requests allow communication with an Apollo Server.
+As part of the assignment the original APP (built with a RESTful API) has been refactored to incoroporate an Apollo Server. It has been installed to run GraphQL queries, with mutations used to fetch and modify data. The Apollo Provider allows communication and requests with the Apollo Server.
 
 The existing authentication middleware has been updated to enable a GraphQL API context.
 
@@ -66,27 +64,22 @@ thomwilliams1990@gmail.com
 
 ## Screenshots
 
-![Homepage](src/components/images/homepage.png)
+![Book Search App](client/images/Book-search.png)
 
-![Contact](src/components/images/contact.png)
-
-![Portfolio](src/components/images/projects.png)
-
-![CV](src/components/images/CV.png)
 
 ## Deployment / Links
 
-- Github Pages: [GitHub Pages](https://thomwilliams.github.io/react-portfolio-tew/)
+- Github Pages: [Heroku]()
 
-- Project Repository: [GitHub](https://github.com/ThomWilliams/react-portfolio-tew)
+- Project Repository: [GitHub](https://github.com/ThomWilliams/book-search-tew)
 
-- Issue tracker: [GitHub Issues](https://github.com/ThomWilliams/react-portfolio-tew/issues)
+- Issue tracker: [GitHub Issues](https://github.com/ThomWilliams/book-search-tew/issues)
 
 ## License
 
 MIT
 
-Copyright (c) [2021] [Budget-Tracker]
+Copyright (c) [2021] [Book-Search-App]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
