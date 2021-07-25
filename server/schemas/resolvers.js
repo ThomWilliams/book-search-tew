@@ -5,7 +5,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   // ADD RESOLVERS - SEE CONTROLLERS vs.
   Query: {
-    user: async () => {
+    me: async () => {
       return User.find({});
     },
     book: async (parent, { _id }) => {
@@ -15,24 +15,24 @@ const resolvers = {
   },
   Mutation: {
     // get a single user by either their id or their username
-    getSingleUser: async ({ user = null, params }, res) => {
-      const foundUser = await User.findOne({
-        $or: [
-          { _id: user ? user._id : params.id },
-          { username: params.username },
-        ],
-      });
+    // getSingleUser: async ({ user = null, params }, res) => {
+    //   const foundUser = await User.findOne({
+    //     $or: [
+    //       { _id: user ? user._id : params.id },
+    //       { username: params.username },
+    //     ],
+    //   });
 
-      if (!foundUser) {
-        return res
-          .status(400)
-          .json({ message: "Cannot find a user with this id!" });
-      }
-      res.json(foundUser);
-    },
+    //   if (!foundUser) {
+    //     return res
+    //       .status(400)
+    //       .json({ message: "Cannot find a user with this id!" });
+    //   }
+    //   res.json(foundUser);
+    // },
 
     // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
-    createUser: async ({ body }, res) => {
+    addUser: async ({ body }, res) => {
       const user = await User.create(body);
 
       if (!user) {
@@ -78,7 +78,7 @@ const resolvers = {
       }
     },
     // remove a book from `savedBooks`
-    deleteBook: async ({ bookData }, user) => {
+    removeBook: async ({ bookData }, user) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user.user._id },
         { $pull: { savedBooks: { bookData } } },
